@@ -1,11 +1,14 @@
 import os
 import PIL
-import mainWindow
+from PIL import Image
 
-def upscale():
+def upscale(inputPhotoEntry, upscaleFactorEntry, outputPhotoEntry):
     # Procesing
-
-    inputPhoto, upscaleFactor, outputPath = mainWindow.procesingPrep
+    inputPhoto = inputPhotoEntry.get()
+    
+    upscaleFactor = upscaleFactorEntry.get()
+     
+    outputPath = outputPhotoEntry.get()
 
     image_file = inputPhoto
     img = PIL.Image.open(image_file)
@@ -14,13 +17,6 @@ def upscale():
     print("wRes: " + str(wRes) + " hRes: " + str(hRes))
     modeSelect = mode[0]
     os.system(f'FidelityFX_CLI.exe -Scale {wRes * upscaleFactor} {hRes * upscaleFactor} -Mode {modeSelect} {inputPhoto} {outputPath}')
-
-def checkData():
-    #upscaleFactor = 2
-    #if upscaleFactor < 1:
-        #upscaleFactor = 1
-    #else:
-    upscale()
 
 # FidelityFX variables
 mode = ["EASU", "RCAS", "CAS"]
