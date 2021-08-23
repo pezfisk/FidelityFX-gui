@@ -1,4 +1,4 @@
-import os
+import os   
 import PIL
 from PIL import Image
 
@@ -6,17 +6,27 @@ def upscale(inputPhotoEntry, upscaleFactorEntry, outputPhotoEntry):
     # Procesing
     inputPhoto = inputPhotoEntry.get()
     
+    print(f'Input photo: {inputPhoto}')
+
+    outputPath = outputPhotoEntry.get()
+
+    print(f'Output Path: {outputPath}')
+
     upscaleFactor = upscaleFactorEntry.get()
      
-    outputPath = outputPhotoEntry.get()
+    print(f'Upscale factor: {upscaleFactor}')
 
     image_file = inputPhoto
     img = PIL.Image.open(image_file)
     wRes, hRes = img.size
 
-    print("wRes: " + str(wRes) + " hRes: " + str(hRes))
+    UwRes = int(wRes) * int(upscaleFactor)
+    UhRes = int(hRes) * int(upscaleFactor)
+
+    print(f"wRes: {str(wRes)} hRes: {str(hRes)}")
+    print(f"Upscaled wRes: {UwRes} UhRes: {UhRes}")
     modeSelect = mode[0]
-    os.system(f'FidelityFX_CLI.exe -Scale {wRes * upscaleFactor} {hRes * upscaleFactor} -Mode {modeSelect} {inputPhoto} {outputPath}')
+    os.system(f'powershell ./FidelityFX_CLI.exe -Scale {UwRes} {UhRes} -Mode {modeSelect} {inputPhoto} {outputPath}')
 
 # FidelityFX variables
 mode = ["EASU", "RCAS", "CAS"]

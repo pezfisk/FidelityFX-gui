@@ -5,6 +5,7 @@ def window():
     # Main GUI config
     window = tkinter.Tk()
     window.title('FidelityFX GUI')
+    window.iconbitmap('fsr_logo.ico')
     window.geometry("500x300")
     fidelityLabel = tkinter.Label(window, text= "FidelityFX Image Upscaler").pack()
     photoLabel = tkinter.Label(window, text= "Input photo path:").pack()
