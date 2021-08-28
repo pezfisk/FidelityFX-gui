@@ -1,4 +1,5 @@
 import tkinter
+import procesingBatch
 import procesing
 
 def window():
@@ -18,5 +19,11 @@ def window():
     upscaleFactorEntry = tkinter.Entry(window)
     upscaleFactorEntry.pack()
     upscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesing.upscale(inputPhotoEntry, upscaleFactorEntry, outputPhotoEntry)).pack()
+
+
+    batchUpscaleFactorLabel = tkinter.Label(window, text= "Batch upscale factor:").pack()
+    upscaleFactorBatchEntry = tkinter.Entry(window)
+    upscaleFactorBatchEntry.pack()
+    batchUpscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesingBatch.batchUpscale(upscaleFactorBatchEntry)).pack()
 
     window.mainloop()
