@@ -4,7 +4,6 @@ from PIL import Image
 
 def upscale(inputPhotoEntry, upscaleFactorEntry, outputPhotoEntry):
     # Procesing
-    print("Single File Upscaling")
     inputPhoto = inputPhotoEntry.get()
     
     print(f'Input photo: {inputPhoto}')
