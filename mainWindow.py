@@ -24,6 +24,6 @@ def window():
     batchUpscaleFactorLabel = tkinter.Label(window, text= "Batch upscale factor:").pack()
     upscaleFactorBatchEntry = tkinter.Entry(window)
     upscaleFactorBatchEntry.pack()
-    batchUpscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesingBatch.batchUpscale(upscaleFactorBatchEntry)).pack()
+    batchUpscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesingBatch.batchUpscale(upscaleFactorBatchEntry, inputPhotoEntry)).pack()
 
     window.mainloop()

@@ -4,18 +4,19 @@ from PIL import Image
 import pathlib
 import videoProcesing
 
-def batchUpscale(upscaleFactorBatchEntry):
+def batchUpscale(upscaleFactorBatchEntry, isInputVideo):
     # Procesing
     print("Batch Upscaling")
 
-    currentDir = str(pathlib.Path("main.py").parent.resolve()) + "\inputBatch/"
+    currentDir = str(pathlib.Path("main.py").parent.resolve()) + "\inputBatch"
     print(currentDir)
 
-    ext = ['BMP', 'PNG', 'ICO', 'JPG', 'TIF', 'GIF']
+    ext = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.gif']
+
+    print(os.listdir(currentDir))
 
     for inputPhoto in os.listdir(currentDir):
         if str(os.path.splitext(inputPhoto)[1]) in ext:
-
             upscaleFactor = upscaleFactorBatchEntry.get()
             
             print(f'Upscale factor: {upscaleFactor}')
@@ -36,6 +37,10 @@ def batchUpscale(upscaleFactorBatchEntry):
         
             print("Executed command: " + command)
             os.system(command)
+
+            if isInputVideo:
+                videoProcesing.frames2video()
+
         else:
             print("File not found or no more files left.")
 

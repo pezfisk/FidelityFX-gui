@@ -3,11 +3,16 @@ import os
 import procesingBatch
 
 def video2Frames(inputVideo, upscaleFactorEntry):
-    print('yay it worked')
+    print('Extracting frames from video')
     currentDir = str(pathlib.Path("main.py").parent.resolve()) + "\inputBatch"
     print(currentDir)
-    command = f'ffmpeg -i {inputVideo} "{currentDir}\%08d.png"'
-    print(command)
+    command = f'ffmpeg.exe -i {inputVideo} "{currentDir}\%08d.png"'
+    print("Executed command: " + command)
     os.system(command)
 
-    procesingBatch.batchUpscale(upscaleFactorEntry)
+    isInputVideo = True
+
+    procesingBatch.batchUpscale(upscaleFactorEntry, isInputVideo)
+
+def frames2video():
+    print('yay it worked')
