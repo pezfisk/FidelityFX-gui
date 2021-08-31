@@ -15,8 +15,13 @@ def batchUpscale(upscaleFactorBatchEntry, isInputVideo):
 
     print(os.listdir(currentDir))
 
-    for inputPhoto in os.listdir(currentDir):
+    inputDir = os.listdir(currentDir)
+
+    for inputPhoto in inputDir:
         if str(os.path.splitext(inputPhoto)[1]) in ext:
+
+            outputDir = os.listdir(str(pathlib.Path("main.py").parent.resolve()) + "\outputBatch")
+
             upscaleFactor = upscaleFactorBatchEntry.get()
             
             print(f'Upscale factor: {upscaleFactor}')
@@ -38,8 +43,11 @@ def batchUpscale(upscaleFactorBatchEntry, isInputVideo):
             print("Executed command: " + command)
             os.system(command)
 
-            if isInputVideo:
-                videoProcesing.frames2video()
+            print('Files in input directory: ' + str(len(inputDir)))
+            print('Files in output directory: ' + str(len(outputDir) + 1))
+
+            if len(inputDir) == len(outputDir) + 1:
+                videoProcesing.frames2video(inputPhoto)
 
         else:
             print("File not found or no more files left.")
