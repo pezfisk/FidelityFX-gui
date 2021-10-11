@@ -4,20 +4,20 @@ from PIL import Image
 import videoProcesing
 import mainWindow
 
-def upscale(inputPhoto, upscaleFactorEntry, outputPath):
+def upscale(inputPhoto, upscaleFactorEntry): # Output path removed
     # Procesing
     print("Single file upscaling")
     
     print(f'Input photo: {inputPhoto}')
 
-    print(f'Output Path: {outputPath}')
+    # print(f'Output Path: {outputPath}')
 
     upscaleFactor = upscaleFactorEntry.get()
      
     print(f'Upscale factor: {upscaleFactor}')
 
     videoExt = ['.mp4', '.mov', '.mkv', '.av1', '.avi']
-    imageExt = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.gif']
+    imageExt = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.gif', '.jpeg', '.jfif']
 
     fileCheck = os.path.splitext(inputPhoto)[1]
     print(fileCheck)
@@ -33,9 +33,11 @@ def upscale(inputPhoto, upscaleFactorEntry, outputPath):
         print(f"wRes: {str(wRes)} hRes: {str(hRes)}")
         print(f"Upscaled wRes: {UwRes} UhRes: {UhRes}")
         modeSelect = mode[0]
+        outputPath = str(os.path.splitext(inputPhoto)[0]) + "_" + upscaleFactor + "x" + str(os.path.splitext(inputPhoto)[1])
         command = f'powershell ./FidelityFX_CLI.exe -Scale {UwRes} {UhRes} -Mode {modeSelect} {inputPhoto} {outputPath}'
-        os.system(command)
-        mainWindow.show_image(outputPath)
+        print("Command executed: ", command)
+        os.system(command)  
+        #mainWindow.show_image(outputPath)
 
     else:
         if fileCheck in videoExt:
