@@ -12,6 +12,7 @@ def show_image(inputPhoto):
 def getImageInput():
     global inputDialog
     inputDialog = filedialog.askopenfilename(title="Select input file", filetypes=(("All files", "*.*"), ("png files", "*.png"),("jpg files", "*.jpg"), ("ico files","*.ico"), ("tif files", "*.tif"), ("gif files", "*.gif"), ("mp4 files", "*.mp4"), ("mov files","*.mov"), ("mkv files","*.mkv"), ("av1 files","*.av1"), ("avi files", "*.avi")))
+    
 
 def getImageOutputDir():
     global outputDialog
@@ -24,17 +25,19 @@ def window():
     window.title('FidelityFX GUI')
     window.iconbitmap('fsr_logo.ico')
     window.geometry("500x300")
-    fidelityLabel = tkinter.Label(window, text= "FidelityFX Image Upscaler").pack()
+    tkinter.Label(window, text= "FidelityFX Image Upscaler").pack()
     photoButton = tkinter.Button(window, text="Select file", command=getImageInput).pack()
+    tkinter.Label(window, text= "Make sure file name doesn't include any spaces!").pack()
+    tkinter.Label(window, text= "").pack()
     #outputButton = tkinter.Button(window, text= "Output path: (Don't put anything here for video upscaling!)", command=getImageOutputDir).pack()
-    upscaleFactorLabel = tkinter.Label(window, text= "Upscale factor:").pack()
+    tkinter.Label(window, text= "Upscale factor:").pack()
     upscaleFactorEntry = tkinter.Entry(window)
     upscaleFactorEntry.pack()
     upscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesing.upscale(inputDialog, upscaleFactorEntry)).pack()
 
-    batchUpscaleFactorLabel = tkinter.Label(window, text= "Batch upscale factor:").pack()
+    tkinter.Label(window, text= "Batch upscale factor:").pack()
     upscaleFactorBatchEntry = tkinter.Entry(window)
     upscaleFactorBatchEntry.pack()
-    batchUpscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesingBatch.batchUpscale(upscaleFactorBatchEntry, inputPhotoEntry)).pack()
+    batchUpscaleButton = tkinter.Button(window, text= "Upscale!", command= lambda: procesingBatch.batchUpscale(upscaleFactorBatchEntry, inputDialog)).pack()
 
     window.mainloop()

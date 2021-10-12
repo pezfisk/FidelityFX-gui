@@ -1,23 +1,6 @@
 import mainWindow
 import os
 
-#try:
-#    print("Deleting ./inputBatch directory")
-#    os.rmdir("./inputBatch")
-#except OSError:
-#    print("No directory found")
-#else:
-#    print("Deleted all files in ./inputBatch")
-#    os.mkdir("./inputBatch")
-#try:
-#    print("Deleting outputBatch directory")
-#    os.rmdir("./outputBatch")
-#except OSError:
-#    print("No directory found")
-#else:
-#    print("Deleted all files in ./outputBatch")
-#    os.mkdir("./outputBatch")
-
 try:
     print("Check for inputBatch folder")
     os.listdir("./inputBatch")

@@ -9,11 +9,11 @@ def batchUpscale(upscaleFactorBatchEntry, isInputVideo):
     print("Batch Upscaling")
 
     currentDir = str(pathlib.Path("main.py").parent.resolve()) + "\inputBatch"
-    print(currentDir)
+    print("Current Directory: " + str(currentDir))
 
     ext = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.gif']
 
-    print(os.listdir(currentDir))
+    print("Files in current directory: " + str(os.listdir(currentDir)))
 
     inputDir = os.listdir(currentDir)
 
@@ -47,10 +47,20 @@ def batchUpscale(upscaleFactorBatchEntry, isInputVideo):
             print('Files in output directory: ' + str(len(outputDir) + 1))
 
             if len(inputDir) == len(outputDir) + 1:
-                videoProcesing.frames2video(inputPhoto)
+                videoProcesing.frames2video(UwRes, UhRes, upscaleFactor)
 
         else:
             print("File not found or no more files left.")
+
+            if isInputVideo:
+                try:
+                    print("Deleting ./inputBatch directory")
+                    os.rmdir("./inputBatch")
+                except OSError:
+                    print("No directory found")
+                else:
+                    print("Deleted all files in ./inputBatch")
+                    os.mkdir("./inputBatch")
 
 # FidelityFX variables
 mode = ["EASU", "RCAS", "CAS"]

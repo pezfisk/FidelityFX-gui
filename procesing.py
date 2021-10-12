@@ -16,8 +16,8 @@ def upscale(inputPhoto, upscaleFactorEntry): # Output path removed
      
     print(f'Upscale factor: {upscaleFactor}')
 
-    videoExt = ['.mp4', '.mov', '.mkv', '.av1', '.avi']
-    imageExt = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.gif', '.jpeg', '.jfif']
+    videoExt = ['.mp4', '.mov', '.mkv', '.av1', '.avi', '.gif']
+    imageExt = ['.bmp', '.png', '.ico', '.jpg', '.tif', '.jpeg', '.jfif']
 
     fileCheck = os.path.splitext(inputPhoto)[1]
     print(fileCheck)
@@ -42,7 +42,7 @@ def upscale(inputPhoto, upscaleFactorEntry): # Output path removed
     else:
         if fileCheck in videoExt:
             print('Input file is a video')
-            videoProcesing.video2Frames(inputPhoto, upscaleFactorEntry)
+            videoProcesing.video2Frames(inputPhoto, upscaleFactorEntry, fileCheck)
         else:
             print('No more files')
 
